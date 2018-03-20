@@ -1,0 +1,103 @@
+version: "3"
+
+services:
+
+  cli0:
+    image: neo-cli:v1
+    container_name: cli0
+    ports:
+      - "10331-10334:10331-10334"
+    networks:
+      - nodeLink
+    volumes:
+      - "/data/cli0:/home/cli/ChainPrivate"
+    stdin_open: true
+    tty: true
+
+  cli1:
+    image: neo-cli:v1
+    container_name: cli1
+    ports:
+      - "11331-11334:10331-10334"
+    networks:
+      - nodeLink
+    volumes:
+      - "/data/cli1:/home/cli/ChainPrivate"
+    stdin_open: true
+    tty: true
+    depends_on:
+      - cli0
+
+  cli2:
+    image: neo-cli:v1
+    container_name: cli2
+    ports:
+      - "12331-12334:10331-10334"
+    networks:
+      - nodeLink
+    volumes:
+      - "/data/cli2:/home/cli/ChainPrivate"
+    stdin_open: true
+    tty: true
+    depends_on:
+      - cli1
+
+  cli3:
+    image: neo-cli:v1
+    container_name: cli3
+    ports:
+      - "13331-13334:10331-10334"
+    networks:
+      - nodeLink
+    volumes:
+      - "/data/cli3:/home/cli/ChainPrivate"
+    stdin_open: true
+    tty: true
+    depends_on:
+      - cli2
+
+  cli4:
+    image: neo-cli:v1
+    container_name: cli4
+    ports:
+      - "14331-14334:10331-10334"
+    networks:
+      - nodeLink
+    volumes:
+      - "/data/cli4:/home/cli/ChainPrivate"
+    stdin_open: true
+    tty: true
+    depends_on:
+      - cli3
+
+  cli5:
+    image: neo-cli:v1
+    container_name: cli5
+    ports:
+      - "15331-15334:10331-10334"
+    networks:
+      - nodeLink
+    volumes:
+      - "/data/cli5:/home/cli/ChainPrivate"
+    stdin_open: true
+    tty: true
+    depends_on:
+      - cli4
+
+  cli6:
+    image: neo-cli:v1
+    container_name: cli6
+    ports:
+      - "16331-16334:10331-10334"
+    networks:
+      - nodeLink
+    volumes:
+      - "/data/cli6:/home/cli/ChainPrivate"
+    stdin_open: true
+    tty: true
+    depends_on:
+      - cli5
+
+networks:
+  nodeLink:
+    driver: bridge
